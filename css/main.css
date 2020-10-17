@@ -1,0 +1,120 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rosario:wght@500&display=swap');
+
+:root {
+  --light-gray: #bababa;
+  --light-blue: #a6cbeb;
+  --gray: #8b8b8b;
+  --blue: #4c96d7;
+  --black: #3a3a3a;
+  --white: #ffffff;
+
+  --font1: 'Montserrat', sans-serif;
+  --font2: 'Rosario', sans-serif;
+}
+
+body  {
+  margin: 5px;
+  padding: 0;
+  font-family: var(--font2);
+}
+
+#container  {
+  margin: 0;
+}
+
+header  {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+nav {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.nav-links  {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style-type: none;
+}
+
+.nav-links li  {
+  float: left;
+}
+
+.nav-links li a  {
+  display: block;
+  color: var(--white);
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+}
+
+/* hr  {
+  border: 2px solid;
+  margin: 10px 0;
+} */
+
+.myAccount {
+  min-width: 150px;
+  text-align: center;
+  line-height: 450%;
+  color: var(--gray);
+}
+
+footer  {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.btn  {
+  text-decoration: none;
+  color: var(--white);
+  text-align: center;
+}
+
+@media only screen and (min-width: 800px)  {
+  body  {
+    background: url("../images/site/checkerboard.jpg");
+    background-repeat: repeat;
+    background-size: 30%;
+    background-attachment: fixed;
+    margin: 15px 0;
+    padding: 0 15%;
+  }
+
+  main  {
+    padding: 0 5px;
+    /* border: 1px solid red; */
+  }
+
+  #container  {
+    min-height: 200px;
+    background-color: var(--white);
+    border-radius: 5px;
+    border: 5px solid var(--blue);
+  }
+
+  li a  {
+    padding: 15px;
+  }
+  
+  li a:hover  {
+    background-color: var(--blue);
+    color: var(--black);
+  }
+
+  .myAccount span  {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+  }
+  
+  footer  {
+    font-size: 0.9rem;
+  }
+}

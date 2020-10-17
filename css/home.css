@@ -1,0 +1,109 @@
+
+main  {
+  margin: 0 5px;
+}
+
+.car  {
+  width: 100%;
+}
+
+.pic  {
+  position: relative;
+}
+
+.info {
+  position: absolute;
+  top: 0;
+  left: 3px;
+}
+
+.info h2  {
+  padding: 0;
+  margin: 0;
+}
+
+.info h2, .list  {
+  color: var(--blue);
+  font-size: 0.9rem;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li  {
+  padding: 0;
+}
+
+.own-btn  {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 45%;
+}
+
+.btn  {
+  width: 100%;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.review ul li {
+  margin: 5px 0;
+}
+
+.select-upgrade {
+  margin: 10px;
+}
+
+.image-box  {
+  background-color: var(--blue);
+  text-align: center;
+  border: 1px solid var(--black);
+}
+
+.image-box img {
+  height: 70px;
+}
+
+.box  {
+  text-align: center;
+}
+
+@media only screen and (min-width: 800px)  {
+  .review-upgrade-box {
+    display: grid;
+    grid-template-columns: 50%;
+  }
+
+  .upgrades-box {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .review-box {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .info {
+    top: 25px;
+    left: 25px;
+  }
+
+  .own-btn  {
+    position: absolute;
+    top: 100px;
+    left: 25px;
+    width: 7rem;
+  }
+
+  .review ul li {
+    margin: 15px 0;
+  }
+}

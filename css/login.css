@@ -1,0 +1,54 @@
+.input-div  {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.box, .box-label  {
+  margin: 5px;
+}
+
+.box input  {
+  width: 200px;
+}
+
+.box-label  {
+  width: 25%;
+}
+
+.register-btn, .signIn-btn, .submit-btn  {
+  background-color: var(--blue);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.signIn-btn {
+  background-color: var(--black);
+}
+
+form a {
+  text-decoration: none;
+}
+
+.success  {
+  color: green;
+}
+
+.warning  {
+  color: orange;
+}
+
+.failed {
+  color: red;
+}
+
+@media only screen and (min-width: 800px)  {
+  .box-label  {
+    width: 15%;
+  }
+
+  .box input  {
+    width: 400px;
+  }
+}

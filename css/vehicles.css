@@ -1,0 +1,6 @@
+.add-classification-btn, .add-vehicle-btn  {
+  background-color: var(--blue);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
