@@ -76,16 +76,18 @@ switch ($action)
     $invPrice = filter_input(INPUT_POST, 'invPrice');
     $invStock = filter_input(INPUT_POST, 'invStock');
     $invColor = filter_input(INPUT_POST, 'invColor');
+    $invImage = filter_input(INPUT_POST, 'invImage');
+    $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
     $classificationId = filter_input(INPUT_POST, 'classificationId');
 
-    if(empty($invMake) || empty($invModel) ||empty($invDescription) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId))
+    if(empty($invMake) || empty($invModel) ||empty($invDescription) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($invImage) || empty($invThumbnail) || empty($classificationId))
     {
       $message = "<p class='warning'>Please fill out all fields before proceeding</p>";
       include '../view/addvehicle.php';
       exit;
     }
 
-    $vehicleOutcome = setVehicle($invMake, $invModel, $invDescription, $invPrice, $invStock, $invColor, $classificationId);
+    $vehicleOutcome = setVehicle($invMake, $invModel, $invDescription, $invPrice, $invStock, $invColor, $invImage, $invThumbnail, $classificationId);
 
     if($vehicleOutcome > 0)
     {

@@ -77,6 +77,18 @@
           <input type="text" name="invColor" id="invColor" placeholder="ex. Red, Green, Yellow">
         </div>
         <div>
+          <label>Upload an Image</label>
+        </div>
+        <div>
+          <input type="text" name="invImage" id="invImage" value="/phpmotors/images/no-image.png">
+        </div>
+        <div>
+          <label>Upload a Thumbnail image</label>
+        </div>
+        <div>
+          <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/no-image.png">
+        </div>
+        <div>
           <label>Select a Classification</label>
         </div>
         <div>

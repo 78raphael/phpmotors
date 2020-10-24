@@ -45,19 +45,17 @@
     return $rowsChanged;
   }
 
-  function setVehicle($invMake, $invModel, $invDescription, $invPrice, $invStock, $invColor, $classificationId)  
+  function setVehicle($invMake, $invModel, $invDescription, $invPrice, $invStock, $invColor, $invImage, $invThumbnail, $classificationId)  
   {
     $db = phpmotorsConnect();
-
-    $image = '/phpmotors/images/no-image.png';
 
     $stmt = $db->prepare("INSERT INTO inventory (invMake, invModel, invDescription, invImage, invThumbnail, invPrice, invStock, invColor, classificationId) VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, :invStock, :invColor, :classificationId)");
 
     $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
     $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
     $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
-    $stmt->bindValue(':invImage', $image, PDO::PARAM_STR);
-    $stmt->bindValue(':invThumbnail', $image, PDO::PARAM_STR);
+    $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
+    $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
     $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
     $stmt->bindValue(':invStock', $invStock, PDO::PARAM_STR);
     $stmt->bindValue(':invColor', $invColor, PDO::PARAM_STR);
