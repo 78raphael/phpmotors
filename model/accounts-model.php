@@ -5,7 +5,8 @@
  *      New function will handle site registration
  */
 
-function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword)  {
+function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword)  
+{
   $db = phpmotorsConnect();
 
   $stmt = $db->prepare('INSERT INTO clients (clientFirstname, clientLastname, clientEmail, clientPassword) VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)');

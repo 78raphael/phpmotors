@@ -77,6 +77,21 @@ footer  {
   text-align: center;
 }
 
+.success  {
+  color: green;
+  padding: 0 15px;
+}
+
+.warning  {
+  color: orange;
+  padding: 0 15px;
+}
+
+.failed {
+  color: red;
+  padding: 0 15px;
+}
+
 @media only screen and (min-width: 800px)  {
   body  {
     background: url("../images/site/checkerboard.jpg");

@@ -3,7 +3,8 @@
  *    Main PHPmotors Model
  */
 
- function getClassifications() {
+ function getClassifications() 
+ {
   $db = phpmotorsConnect();
   
   $stmt = $db->prepare('SELECT classificationName FROM carclassification ORDER BY classificationName ASC');

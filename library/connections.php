@@ -1,6 +1,7 @@
 <?php
 
-function phpmotorsConnect()  {
+function phpmotorsConnect()  
+{
   $server = 'localhost';
   $db = 'phpmotors';
   $username = 'roboClient';
@@ -8,14 +9,15 @@ function phpmotorsConnect()  {
   $dsn = "mysql:host=$server;dbname=$db";
   $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 
-  try {
+  try 
+  {
     $link = new PDO($dsn, $username, $password, $options);
     return $link;
-
-  } catch(PDOException $e) {
+  } 
+  catch(PDOException $e) 
+  {
     header('LOCATION: /phpmotors/view/500.php');
     exit;
-
   }
 }
 

@@ -1,6 +1,16 @@
-.add-classification-btn, .add-vehicle-btn  {
+.add-classification-btn, .add-vehicle-btn, .back-btn, .submit-btn  {
   background-color: var(--blue);
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
+}
+
+.vehicle-form {
+  padding: 0 15px;
+  /* background-color: red; */
+}
+
+input[type="text"], select, textarea  {
+  width: 200px;
+  margin-bottom: 5px;
 }

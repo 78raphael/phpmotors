@@ -31,18 +31,6 @@ form a {
   text-decoration: none;
 }
 
-.success  {
-  color: green;
-}
-
-.warning  {
-  color: orange;
-}
-
-.failed {
-  color: red;
-}
-
 @media only screen and (min-width: 800px)  {
   .box-label  {
     width: 15%;
