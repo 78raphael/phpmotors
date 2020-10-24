@@ -45,7 +45,7 @@
           <label>Enter a new Classification</label>
         </div>
         <div>
-          <input type="text" name="classificationName" id="classificationName" size="50" placeholder="EX. Coupe, Custom, Street">
+          <input type="text" name="classificationName" id="classificationName" size="50" placeholder="ex. Coupe, Custom, Street">
         </div>
         <div class="submit">
           <input class="submit-btn btn" type="submit" name="submit" id="addClassification" value="Add Classifiction">
