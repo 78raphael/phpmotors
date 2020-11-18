@@ -21,10 +21,9 @@
       <?php require $root_snip . 'header.php'; ?>
     </header>
     <nav>
-      <?php 
-      // require $root_snip . 'nav.php';
-        echo $navList;
-      ?>
+<?php 
+  echo $navList;
+?>
     </nav>
 
     <main>

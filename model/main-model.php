@@ -3,6 +3,9 @@
  *    Main PHPmotors Model
  */
 
+ /**
+ *     Get all classification names only
+ */
  function getClassifications() 
  {
   $db = phpmotorsConnect();

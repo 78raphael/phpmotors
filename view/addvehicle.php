@@ -2,10 +2,27 @@
 /** 
  *    Vehicles View
  */
+if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)  {
 
  $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
-?>
 
+/** 
+ *    Vehicles List
+ */
+$classList = '<select name="classificationId" id="classificationId">';
+$classList .= '<option value="" selected disabled>Select a Vehicle</option>';
+foreach($classificationsList as $class)
+{
+  $classList .= "<option value='".$class['classificationId']."'";
+  if(isset($classificationId)) {
+    if($class['classificationId'] === $classificationId)
+      $classList .= " selected ";
+  }
+  $classList .= ">".$class['classificationName']."</option>";
+}
+$classList .= '</select>';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,49 +61,49 @@
           <label>Enter a Make</label>
         </div>
         <div>
-          <input type="text" name="invMake" id="invMake" placeholder="ex. Ford, Chevy, Toyota">
+          <input type="text" name="invMake" id="invMake" placeholder="ex. Ford, Chevy, Toyota" <?php if(isset($invMake)){echo "value='$invMake'";} ?> required>
         </div>
         <div>
           <label>Enter a Model</label>
         </div>
         <div>
-          <input type="text" name="invModel" id="invModel" placeholder="ex. Escape, Tahoe, Prius">
+          <input type="text" name="invModel" id="invModel" placeholder="ex. Escape, Tahoe, Prius" <?php if(isset($invModel)){echo "value='$invModel'";} ?> required>
         </div>
         <div>
           <label>Enter a Description</label>
         </div>
         <div>
-          <textarea name="invDescription" id="invDescription"></textarea>
+          <textarea name="invDescription" id="invDescription" required><?php if(isset($invDescription)){echo $invDescription;} ?></textarea>
         </div>
         <div>
           <label>Enter a Price</label>
         </div>
         <div>
-          $<input type="text" name="invPrice" id="invPrice" placeholder="ex. 1234.56">
+          $<input type="text" name="invPrice" id="invPrice" placeholder="ex. 1234.56" <?php if(isset($invPrice)){echo "value='$invPrice'";} ?> required>
         </div>
         <div>
           <label>Enter number in Stock</label>
         </div>
         <div>
-          <input type="text" name="invStock" id="invStock" placeholder="Use Whole Numbers">
+          <input type="text" name="invStock" id="invStock" placeholder="Use Whole Numbers" <?php if(isset($invStock)){echo "value='$invStock'";} ?> required>
         </div>
         <div>
           <label>Enter Color</label>
         </div>
         <div>
-          <input type="text" name="invColor" id="invColor" placeholder="ex. Red, Green, Yellow">
+          <input type="text" name="invColor" id="invColor" placeholder="ex. Red, Green, Yellow" <?php if(isset($invColor)){echo "value='$invColor'";} ?> required>
         </div>
         <div>
           <label>Upload an Image</label>
         </div>
         <div>
-          <input type="text" name="invImage" id="invImage" value="/phpmotors/images/no-image.png">
+          <input type="text" name="invImage" id="invImage" value="/phpmotors/images/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";} ?> required>
         </div>
         <div>
           <label>Upload a Thumbnail image</label>
         </div>
         <div>
-          <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/no-image.png">
+          <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/no-image.png" <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required>
         </div>
         <div>
           <label>Select a Classification</label>
@@ -107,3 +124,8 @@
   </div>  
 </body>
 </html>
+<?php
+}
+else {
+  header('Location: /phpmotors/');
+}

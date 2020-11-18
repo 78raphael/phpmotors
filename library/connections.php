@@ -1,5 +1,8 @@
 <?php
 
+/**
+ *     Create Database connection using PHP
+ */
 function phpmotorsConnect()  
 {
   $server = 'localhost';
@@ -20,5 +23,3 @@ function phpmotorsConnect()
     exit;
   }
 }
-
-// phpmotorsConnect();

@@ -4,8 +4,10 @@
  */
 
   $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
-?>
+  
+  $message = (isset($_SESSION['message'])) ? $_SESSION['message'] : "";
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,30 +27,28 @@
     </nav>
     <main>
       <h1>Login</h1>
-<?php
-  if(isset($message))  {
-    echo $message;
-  }
-?>
+<?=$message?>
 
-      <form method="POST" action="/phpmotors/accounts/index.php">
+      <form method="POST" action="/phpmotors/accounts/">
         <div class="input-div">
           <div class="box-label"><label for="clientEmail">Email:</label></div>
-          <div class="box"><input name="clientEmail" id="clientEmail" type="email"></div>
+          <div class="box"><input name="clientEmail" id="clientEmail" type="email" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> required></div>
         </div>
         <div class="input-div">
           <div class="box-label">
             <label for="clientPassword">Password:</label>
           </div>
           <div class="box">
-            <input name="clientPassword" id="clientPassword" type="password" required>
+            <input name="clientPassword" id="clientPassword" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
           </div>
         </div>
+        <div class="input-div">
+          <span class="password-requirements">(At least 8 characters, 1 UPPERCASE letter, 1 number, and 1 special character)</span>
+        </div>
 
-        <div class="signIn">
-          <a href="?action=validate">
-            <div class="signIn-btn btn">Sign In</div>
-          </a>
+        <div class="submit">
+          <input class="" type="submit" name="submit" id="signIn" value="Sign In">
+          <input type="hidden" name="action" value="validate">
         </div>
         <hr>
         <div class="register">
@@ -65,3 +65,5 @@
   </div>  
 </body>
 </html>
+<?php
+  unset($_SESSION['message']);

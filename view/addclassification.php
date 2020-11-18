@@ -3,9 +3,10 @@
  *    Vehicles View
  */
 
+if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)  {
+
  $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +46,7 @@
           <label>Enter a new Classification</label>
         </div>
         <div>
-          <input type="text" name="classificationName" id="classificationName" size="50" placeholder="ex. Coupe, Custom, Street">
+          <input type="text" name="classificationName" id="classificationName" size="50" placeholder="ex. Coupe, Custom, Street" <?php if(isset($classificationName)){echo "value='$classificationName'";} ?> required>
         </div>
         <div class="submit">
           <input class="submit-btn btn" type="submit" name="submit" id="addClassification" value="Add Classifiction">
@@ -61,3 +62,8 @@
   </div>  
 </body>
 </html>
+<?php
+}
+else {
+  header('Location: /phpmotors/');
+}

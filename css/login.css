@@ -18,9 +18,10 @@
 
 .register-btn, .signIn-btn, .submit-btn  {
   background-color: var(--blue);
+  width: 91.5%;
+  border-radius: 5px;
   padding: 10px;
   margin: 10px;
-  border-radius: 5px;
 }
 
 .signIn-btn {
@@ -31,6 +32,11 @@ form a {
   text-decoration: none;
 }
 
+.password-requirements  {
+  font-size: .8rem;
+  margin: 0 10%;
+}
+
 @media only screen and (min-width: 800px)  {
   .box-label  {
     width: 15%;
@@ -38,5 +44,9 @@ form a {
 
   .box input  {
     width: 400px;
+  }
+
+  .register-btn, .signIn-btn, .submit-btn  {
+    width: 93%;
   }
 }

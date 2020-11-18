@@ -13,6 +13,28 @@
   --font2: 'Rosario', sans-serif;
 }
 
+input[type="submit"]  {
+  display: inline-block;
+  border: none;
+  text-decoration: none;
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+
+  border-radius: 5px;
+  border-width: 0;
+  width: 96.5%;
+  padding: 10px;
+  margin: 10px;
+
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 body  {
   margin: 5px;
   padding: 0;
@@ -53,16 +75,15 @@ nav {
   text-decoration: none;
 }
 
-/* hr  {
-  border: 2px solid;
-  margin: 10px 0;
-} */
-
 .myAccount {
   min-width: 150px;
   text-align: center;
   line-height: 450%;
-  color: var(--gray);
+  color: var(--black);
+}
+
+.myAccount > span {
+  padding: 0 10px;
 }
 
 footer  {
@@ -75,6 +96,18 @@ footer  {
   text-decoration: none;
   color: var(--white);
   text-align: center;
+  border-width: 0;
+  width: 97%;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.lnk  {
+  text-decoration: none;
+  text-align: center;
+  color: var(--white);
 }
 
 .success  {
@@ -131,5 +164,13 @@ footer  {
   
   footer  {
     font-size: 0.9rem;
+  }
+
+  .btn  {
+    cursor: pointer;
+  }
+
+  .btn:hover, input[type="submit"]:hover  {
+    background-color: var(--black);
   }
 }

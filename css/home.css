@@ -44,10 +44,6 @@ main  {
   width: 45%;
 }
 
-.btn  {
-  width: 100%;
-}
-
 .upgrades {
   display: grid;
   grid-template-columns: 50% 50%;
