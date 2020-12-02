@@ -37,7 +37,7 @@ form a {
   margin: 0 10%;
 }
 
-@media only screen and (min-width: 800px)  {
+@media only screen and (min-width: 768px)  {
   .box-label  {
     width: 15%;
   }

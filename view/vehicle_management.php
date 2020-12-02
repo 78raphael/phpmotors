@@ -9,7 +9,6 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
 
   $message = (isset($_SESSION['message'])) ? $_SESSION['message'] : "";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

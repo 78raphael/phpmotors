@@ -97,13 +97,13 @@ $classList .= '</select>';
           <label>Upload an Image</label>
         </div>
         <div>
-          <input type="text" name="invImage" id="invImage" value="/phpmotors/images/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";} ?> required>
+          <input type="text" name="invImage" id="invImage" value="/phpmotors/images/vehicles/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";} ?> required>
         </div>
         <div>
           <label>Upload a Thumbnail image</label>
         </div>
         <div>
-          <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/no-image.png" <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required>
+          <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/vehicles/no-image.png" <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required>
         </div>
         <div>
           <label>Select a Classification</label>

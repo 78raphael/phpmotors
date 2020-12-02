@@ -1,0 +1,117 @@
+html  {
+  box-sizing: border-box;
+ }
+ 
+ *, *:before, *:after {
+  box-sizing: inherit;
+ }
+
+ #inv-display {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+ }
+ 
+ #inv-display li  {
+  margin-bottom: .5em;
+  border: 1px #ccc solid;
+  list-style-type: none;
+  flex: 1 1 auto;
+ }
+ 
+ #inv-display li img {
+     max-width: 100%;
+ }
+
+ #inv-display li a  {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: var(--black);
+}
+
+#inv-display li a:hover  {
+  background-color: transparent;
+  color: var(--black);
+  border: 2px var(--blue) solid;
+}
+
+a {
+  text-decoration: none;
+}
+
+.vehicleContainer, .vh-image {
+  width: 100%;
+}
+
+.car-image {
+  width: 100%;
+}
+
+#thumbs li {
+  list-style-type: none;
+}
+
+.main-details-div  {
+  /* border: 1px red solid; */
+  display: flex;
+  flex-direction: column;
+}
+
+.thumb-div  {
+  position: relative;
+  top: 0;
+  padding-right: 5px;
+}
+
+
+@media screen and (min-width: 768px)  {
+
+  /* For vehicle display in classification view */
+  #inv-display {
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+
+  #inv-display h2{
+    font-size: 1rem;
+  }
+
+  #inv-display li {
+    max-width: 200px;
+    flex: 1 0 auto;
+    text-align: center;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+      
+  #inv-display div {
+    width: 100%;
+  }
+
+  .main-details-div  {
+    /* border: 1px blueviolet solid; */
+    flex-direction: row-reverse;
+  }
+
+  .thumb-div  {
+    width: 25%;
+  }
+
+  #thumbs {
+    display: initial;
+    padding: 0 5px;
+  }
+
+  #thumbs img {
+    width: 100%;
+    transition: transform .2s; /* Animation */
+  }
+
+  #thumbs img:hover {
+    transform: scale(2.0);
+  }
+}

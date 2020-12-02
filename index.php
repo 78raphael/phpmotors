@@ -12,13 +12,9 @@ require_once 'library/functions.php';
 $classifications = getClassifications();
 $navList = navList($classifications);
 
-// forms input
-$action = filter_input(INPUT_POST, 'action');
-
-if($action == NULL) 
-{
-  // links input
-  $action = filter_input(INPUT_GET, 'action');
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+if ($action == NULL) {
+  $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 }
 
 if(isset($_COOKIE['firstname']))  {

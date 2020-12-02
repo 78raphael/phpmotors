@@ -174,17 +174,86 @@
   /**
    *    Get vehicles by the classification name
    */
-  function getVehiclesByClassification($classificationName)
+  function getVehiclesByClassification($classificationName, $isPrimary = 0)
   {
     $db = phpmotorsConnect();
 
-    $stmt = $db->prepare('SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)');
+    $stmt = $db->prepare('
+    SELECT i.invId, i.invMake, i.invModel, i.invDescription, i.invPrice, i.invStock, i.invColor, i.classificationId, ii.imgPath
+    FROM inventory i
+    JOIN images ii ON ii.invId = i.invId
+    WHERE i.classificationId 
+    IN (
+      SELECT classificationId 
+      FROM carclassification 
+      WHERE classificationName = :classificationName
+    ) 
+    AND ii.imgPath LIKE "%-tn%"
+    AND ii.imgPrimary = :isPrimary;
+    ');
 
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->bindValue(':isPrimary', $isPrimary, PDO::PARAM_INT);
     $stmt->execute();
 
     $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
 
     return $vehicles;
+  }
+
+  /**
+   *    Get vehicle info by Id
+   */
+  function getVehicleById($invId)  
+  {
+    $db = phpmotorsConnect();
+
+    $stmt = $db->prepare('SELECT * FROM inventory WHERE invId = :invId');
+
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $vehicleInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+
+    return $vehicleInfo;
+  }
+
+  /**
+   *    Get vehicle info by Id (Refactor)
+   */
+  function getVehicleDetailsById($invId)  
+  {
+    $db = phpmotorsConnect();
+
+    $stmt = $db->prepare('SELECT i.invId, i.invMake, i.invModel, i.invDescription, i.invPrice, i.invStock, i.invColor, ii.imgPath 
+    FROM inventory i
+    JOIN images ii ON ii.invId = i.invId 
+    WHERE i.invId = :invId
+    AND ii.imgPath NOT LIKE "%-tn%"');
+
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $vehicleInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+
+    return $vehicleInfo;
+  }
+
+  /**
+   *    Get info of all vehicles
+   */
+  function getVehicles()
+  {
+    $db = phpmotorsConnect();
+
+    $stmt = $db->prepare('SELECT invId, invMake, invModel FROM inventory');
+    $stmt->execute();
+
+    $invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+
+    return $invInfo;
   }

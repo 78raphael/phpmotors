@@ -198,13 +198,13 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
           <label>Upload an Image</label>
         </div>
         <div>
-          <input type="text" name="invImage" id="invImage" value="/phpmotors/images/no-image.png" <?=$invImageVal?> required>
+          <input type="text" name="invImage" id="invImage" value="/phpmotors/images/vehicles/no-image.png" <?=$invImageVal?> required>
         </div>
         <div>
           <label>Upload a Thumbnail image</label>
         </div>
         <div>
-          <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/no-image.png" <?=$invThumbnailVal?> required>
+          <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/vehicles/no-image.png" <?=$invThumbnailVal?> required>
         </div>
         <div>
           <label>Select a Classification</label>

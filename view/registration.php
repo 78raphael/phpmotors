@@ -5,7 +5,6 @@
 
   $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

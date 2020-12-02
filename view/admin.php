@@ -27,7 +27,6 @@
   $sessionMessage = (isset($_SESSION['message'])) ? $_SESSION['message'] : "";
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

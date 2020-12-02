@@ -9,15 +9,15 @@ require_once '../library/connections.php';
 require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
 require_once '../library/functions.php';
+require_once '../model/uploads-model.php';
 
 $classifications = getClassifications();
 $classificationsList = getClassificationsList();
 $navList = navList($classifications);
 
-$action = filter_input(INPUT_POST, 'action');
-if($action == NULL)
-{
-  $action = filter_input(INPUT_GET, 'action');
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+if ($action == NULL) {
+  $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 }
 
 switch ($action)  
@@ -64,10 +64,10 @@ switch ($action)
     $classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
 
     if( empty($invMake) || empty($invModel) ||
-    empty($invPrice) || empty($invStock) || 
-    empty($invColor) || empty($invImage) || 
-    empty($invThumbnail) || empty($invDescription) ||
-    empty($classificationId)
+        empty($invPrice) || empty($invStock) || 
+        empty($invColor) || empty($invImage) || 
+        empty($invThumbnail) || empty($invDescription) ||
+        empty($classificationId)
     )
     {
       $message = "<p class='warning'>Please fill out all fields before proceeding</p>";
@@ -163,18 +163,26 @@ switch ($action)
     header('location: /phpmotors/vehicles/');
     exit;
     break;
-  case 'classification':
-    // $className = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
-    $vehicles = getVehiclesByClassification(filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING));
+  case 'showVehicle':
+    $invId = filter_input(INPUT_GET, 'Id', FILTER_SANITIZE_NUMBER_INT);
 
-    if(!count($vehicles)){
+    $vehicleInfo = getVehicleDetailsById($invId);
+    $vehicleThumbs = getThumbnailsById($invId);
+    $showThumbs = showThumbnails($vehicleThumbs);
+    $vehicleDetails = showVehicleDetails($vehicleInfo);
+
+    include '../view/vehicle-detail.php';
+    break;
+  case 'classification':
+    $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
+    $vehicles = getVehiclesByClassification($classificationName, 1);
+
+    if(!count($vehicles)) {
       $message = "<p class='notice'>Sorry, no $classificationName vehicles could be found.</p>";
     } else {
       $vehicleDisplay = buildVehiclesDisplay($vehicles);
     }
 
-    echo $vehicleDisplay;
-    exit;
     include '../view/classification.php';
     break;
   default:

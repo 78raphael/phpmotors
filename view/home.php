@@ -5,7 +5,6 @@
 
   $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +28,7 @@
     <main>
       <h1>Welcome to PHP Motors</h1>
       <div class="pic">
-        <span class="delorian"><img class="car" src="/phpmotors/images/delorean.jpg" alt="Delorean"></span>
+        <span class="delorian"><img class="car" src="/phpmotors/images/vehicles/delorean.jpg" alt="Delorean"></span>
         <div class="info">
           <h2>DMC Delorean</h2>
           <div class="info-list">

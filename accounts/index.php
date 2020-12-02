@@ -13,10 +13,9 @@ require_once '../library/functions.php';
 $classifications = getClassifications();
 $navList = navList($classifications);
 
-$action = filter_input(INPUT_POST, 'action');
-if($action == NULL) 
-{
-  $action = filter_input(INPUT_GET, 'action');
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+if ($action == NULL) {
+  $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 }
 
 switch($action) 
