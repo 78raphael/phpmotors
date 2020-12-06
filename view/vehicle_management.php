@@ -33,6 +33,12 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
     echo $message;
   }
 ?>
+      <div class="back-btn-div">
+        <a class="btn" href="/phpmotors/accounts/?action=admin">
+          <div class="back-btn">Back to Admin</div>
+        </a>
+      </div>
+      <hr>
       <div class="add-vehicle-div">
           <a class="lnk" href="?action=addvehicle">
             <div class="add-vehicle-btn">Add Vehicle</div>
@@ -58,9 +64,9 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
     <footer>
       <?php require $root_snip . 'footer.php'; ?>
     </footer>
-  </div>  
+  </div>
+  <script src="../js/inventory.js"></script>  
 </body>
-<script src="../js/inventory.js"></script>
 </html>
 <?php
   unset($_SESSION['message']);

@@ -8,10 +8,12 @@ session_start();
 require_once '../library/connections.php';
 require_once '../model/main-model.php';
 require_once '../model/accounts-model.php';
+require_once '../model/vehicles-model.php';
 require_once '../library/functions.php';
 
 $classifications = getClassifications();
 $navList = navList($classifications);
+$classificationsList = getClassificationsList();
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 if ($action == NULL) {
@@ -98,6 +100,8 @@ switch($action)
 
     $clientData = getClient($clientEmail);
     $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+    var_dump($clientData['clientPassword']);
+    var_dump($hashCheck);
 
     if(!$hashCheck) {
       $_SESSION['message'] = '<p class="warning">Please check your password and try again.</p>';

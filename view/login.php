@@ -27,6 +27,7 @@
     </nav>
     <main>
       <h1>Login</h1>
+      
 <?=$message?>
 
       <form method="POST" action="/phpmotors/accounts/">

@@ -17,10 +17,6 @@ if ($action == NULL) {
   $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 }
 
-if(isset($_COOKIE['firstname']))  {
-  $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
-}
-
 switch($action) 
 {
   case 'template':

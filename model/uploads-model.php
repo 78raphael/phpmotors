@@ -3,10 +3,10 @@
  *    Uploads Model
  */
 
- /**
-  *   Insert images into DB:images
-  *     - Make a thumbnail image and also insert into DB
-  */
+/**
+*   Insert images into DB:images
+*     - Make a thumbnail image and also insert into DB
+*/
 function storeImages($imgPath, $invId, $imgName, $imgPrimary)
 {
   $db = phpmotorsConnect();

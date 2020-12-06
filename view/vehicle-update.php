@@ -8,12 +8,13 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
   $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
 
   $message = (isset($_SESSION['message'])) ? $_SESSION['message'] : "";
+  $makeModel = "";
 
   /** 
    *    Classification List
    */
   $classList = '<select name="classificationId" id="classificationId">';
-  $classList .= '<option value="" selected disabled>Select a Classification</option>';
+  $classList .= '<option value="" disabled>Select a Classification</option>';
   foreach($classificationsList as $class)
   {
     $classList .= "<option value='$class[classificationId]'";
@@ -110,7 +111,7 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
   } elseif(isset($invInfo['invImage']))  {
     $invImageVal = "value='$invInfo[invImage]'";
   } else {
-    $invImageVal = "";
+    $invImageVal = "value='/phpmotors/images/vehicles/no-image.png'";
   }
 
   // Thumbnail Value
@@ -119,7 +120,7 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
   } elseif(isset($invInfo['invThumbnail']))  {
     $invThumbnailVal = "value='$invInfo[invThumbnail]'";
   } else {
-    $invThumbnailVal = "";
+    $invThumbnailVal = "value='/phpmotors/images/vehicles/no-image.png'";
   }
 
 ?>
@@ -145,8 +146,8 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
       <h1><?=$makeModel?></h1>
 
       <div class="back-btn-div">
-        <a class="btn" href="?">
-          <div class="back-btn">Back</div>
+        <a class="btn" href="/phpmotors/accounts/?action=admin">
+          <div class="back-btn">Back to Admin</div>
         </a>
       </div>
 
@@ -198,13 +199,13 @@ if($_SESSION['loggedin'] === true && $_SESSION['clientData']['clientLevel'] > 1)
           <label>Upload an Image</label>
         </div>
         <div>
-          <input type="text" name="invImage" id="invImage" value="/phpmotors/images/vehicles/no-image.png" <?=$invImageVal?> required>
+          <input type="text" name="invImage" id="invImage" <?=$invImageVal?> required>
         </div>
         <div>
           <label>Upload a Thumbnail image</label>
         </div>
         <div>
-          <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/vehicles/no-image.png" <?=$invThumbnailVal?> required>
+          <input type="text" name="invThumbnail" id="invThumbnail" <?=$invThumbnailVal?> required>
         </div>
         <div>
           <label>Select a Classification</label>

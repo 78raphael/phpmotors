@@ -79,12 +79,13 @@ nav {
 .myAccount {
   min-width: 150px;
   text-align: center;
-  line-height: 450%;
+  /* line-height: 450%; */
+  padding-top: 25px;
   color: var(--black);
 }
 
 .myAccount > span {
-  padding: 0 10px;
+  padding: 0 5px 0 0;
 }
 
 footer  {
@@ -126,6 +127,16 @@ footer  {
   padding: 0 15px;
 }
 
+.default-link {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.default-link:hover {
+  text-decoration: underline;
+  color: var(--init-blue);
+}
+
 @media only screen and (min-width: 768px)  {
   body  {
     /* background: url("../images/site/checkerboard.jpg"); */
@@ -157,10 +168,11 @@ footer  {
     color: var(--black);
   }
 
-  .myAccount span  {
+  .myAccount > span  {
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
+    padding: 0 30px 0 0;
   }
   
   footer  {
