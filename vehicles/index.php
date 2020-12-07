@@ -10,6 +10,7 @@ require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
 require_once '../library/functions.php';
 require_once '../model/uploads-model.php';
+require_once '../model/reviews-model.php';
 
 $classifications = getClassifications();
 $classificationsList = getClassificationsList();
@@ -170,6 +171,9 @@ switch ($action)
     $vehicleThumbs = getThumbnailsById($invId);
     $showThumbs = showThumbnails($vehicleThumbs);
     $vehicleDetails = showVehicleDetails($vehicleInfo);
+
+    $getReviews = getReviewByInvId($invId);
+    $reviewEntries = buildReviewsDisplay($getReviews, $invId);
 
     include '../view/vehicle-detail.php';
     break;

@@ -33,8 +33,10 @@
   display: flex;
   justify-content: space-between;
   /* text-align: left; */
-  line-height: 200%;
+  line-height: 250%;
   padding: 0 10px;
+  background-color: var(--black);
+  color: var(--white);
 }
 
 /* .reviewer-name  {

@@ -28,12 +28,15 @@ function getReviewByInvId($invId)
 {
   $db = phpmotorsConnect();
 
-  $stmt = $db->prepare('SELECT * FROM reviews WHERE invId = :invId');
+  $stmt = $db->prepare('SELECT r.reviewId, r.reviewText, r.reviewDate, r.invId, r.clientId, c.clientFirstname, c.clientLastname FROM reviews r
+    JOIN clients c ON c.clientId = r.clientId
+    WHERE invId = :invId
+    ORDER BY r.reviewDate DESC');
 
   $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
   $stmt->execute();
 
-  $reviews = $stmt->fetch(PDO::FETCH_ASSOC);
+  $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $stmt->closeCursor();
 
   return $reviews;

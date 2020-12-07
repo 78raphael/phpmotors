@@ -278,3 +278,61 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height)
 
   imagedestroy($old_image);
 }
+
+/* * ********************************
+*  Functions for Reviews
+* ********************************* */
+
+/**
+ *    Create HTML for reviews
+ */
+function buildReviewsDisplay($reviewsArr, $invId)
+{
+  $reviewsDisplay = "";
+  $clientId = $_SESSION['clientData']['clientId'];
+
+  if($_SESSION['loggedin'] == false || !isset($_SESSION))  {
+    $reviewsDisplay = '<p>To leave a review, please <a href="/phpmotors/accounts/?action=login" class="default-link">log in</a>.</p>';
+  } else {
+    $reviewsDisplay .= "<form id='review-form' method='POST' action='/phpmotors/reviews/'>
+          <div class='reviews-form-div'>
+            <div class='reviews-form-main'>
+              <div class='review-area'>
+                <textarea class='review-box' name='reviewText' id='reviewText' placeholder='Add review here'></textarea>
+              </div>
+            </div>
+            <div class='reviews-form-side'>
+              <div class='submit'>
+                <input class='submit-btn btn' type='submit' name='submit' id='updateAccount' value='Add Review'>
+                <input type='hidden' name='action' value='addReview'>
+                <input type='hidden' name='clientId' value='$clientId'>
+                <input type='hidden' name='invId' value='$invId'>
+              </div>
+            </div>
+          </div>
+        </form>";
+
+    foreach($reviewsArr as $review) {
+      $reviewerName = substr($review['clientFirstname'], 0, 1) . ". " . $review['clientLastname'];
+      $reviewStamp = date_format(date_create($review['reviewDate']), "l M. j, Y - g:i:s A");
+
+      $reviewsDisplay .= "
+        <div class='reviews-div'>
+          <div class='reviews-main'>";
+      $reviewsDisplay .= "$review[reviewText]<hr>[$reviewStamp]";
+
+      $reviewsDisplay .= "</div>
+          <div class='reviews-side'>
+            <span class='title-review'>$reviewerName</span>
+            <div class='title-btns'>
+              <span class='edit-review'><button class='submit-btn'>Edit</button></span>
+              <span class='delete-review'><button>Delete</button></span>
+            </div>
+          </div>
+        </div>";
+    }
+  }
+  
+  // return $reviewsArr;
+  return $reviewsDisplay;
+}
