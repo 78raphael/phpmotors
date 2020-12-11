@@ -3,8 +3,8 @@
  *    Individual Vehicle View
  */
 
-// var_dump($_SESSION);
 var_dump('GET REVIEWS', $getReviews);
+var_dump('SESSION', $_SESSION);
 
   $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
 
@@ -40,7 +40,7 @@ var_dump('GET REVIEWS', $getReviews);
         </div>
       </div>
       <hr>
-      <h2>Reviews</h2>
+      <h2><?=$title?></h2>
 <?php
   if(isset($_SESSION['message'])) {
     echo $_SESSION['message'];

@@ -49,12 +49,14 @@ function getReviewById($reviewId)
 {
   $db = phpmotorsConnect();
 
-  $stmt = $db->prepare('SELECT * FROM reviews WHERE reviewId = :reviewId');
+  $stmt = $db->prepare('SELECT r.reviewId, r.reviewText, r.reviewDate, r.invId, r.clientId, c.clientFirstname, c.clientLastname FROM reviews r
+    JOIN clients c ON c.clientId = r.clientId
+    WHERE reviewId = :reviewId');
 
   $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
   $stmt->execute();
 
-  $reviews = $stmt->fetch(PDO::FETCH_ASSOC);
+  $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $stmt->closeCursor();
 
   return $reviews;
@@ -87,12 +89,12 @@ function updateReview($reviewText, $reviewId)
 {
   $db = phpmotorsConnect();
 
-  $stmt = $db->prepare('UPDATE reviews 
-    SET reviewText = :reviewText
-    WHERE invId = :invId');
+  $stmt = $db->prepare('UPDATE reviews r
+    SET r.reviewText = :reviewText
+    WHERE r.reviewId = :reviewId');
 
   $stmt->bindValue(':reviewText', $reviewText, PDO::PARAM_STR);
-  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
 
   $stmt->execute();
 
@@ -105,7 +107,19 @@ function updateReview($reviewText, $reviewId)
 /**
 *   Delete a Review
 */
-function deleteReview()
+function deleteReview($reviewId)
 {
-  //
+  $db = phpmotorsConnect();
+
+  $stmt = $db->prepare('DELETE FROM reviews
+  WHERE reviewId = :reviewId');
+
+  $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
+
+  $stmt->execute();
+
+  $rowsChanged = $stmt->rowCount();
+  $stmt->closeCursor();
+
+  return $rowsChanged;
 }

@@ -33,7 +33,7 @@ function buildInventoryList(data) {
   dataTable += '<tbody>';
 
   data.forEach(function (el) {
-    console.log(el.invId + ", " + el.invModel);
+    // console.log(el.invId + ", " + el.invModel);
     dataTable += `<tr><td>${el.invMake} ${el.invModel}</td>`;
     dataTable += `<td><a href='/phpmotors/vehicles?action=mod&id=${el.invId}' title='Click to modify'>Modify</a></td>`;
     dataTable += `<td><a href='/phpmotors/vehicles?action=del&id=${el.invId}' title='Click to delete'>Delete</a></td></tr>`;

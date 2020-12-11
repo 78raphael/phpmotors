@@ -166,6 +166,10 @@ switch ($action)
     break;
   case 'showVehicle':
     $invId = filter_input(INPUT_GET, 'Id', FILTER_SANITIZE_NUMBER_INT);
+    $_SESSION['carData']['invId'] = $invId;
+
+    $prefix = "Add";
+    $title = "Reviews";
 
     $vehicleInfo = getVehicleDetailsById($invId);
     $vehicleThumbs = getThumbnailsById($invId);
@@ -173,7 +177,7 @@ switch ($action)
     $vehicleDetails = showVehicleDetails($vehicleInfo);
 
     $getReviews = getReviewByInvId($invId);
-    $reviewEntries = buildReviewsDisplay($getReviews, $invId);
+    $reviewEntries = buildReviewsDisplay($getReviews, $invId, $prefix);
 
     include '../view/vehicle-detail.php';
     break;

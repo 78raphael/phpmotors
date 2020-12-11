@@ -6,7 +6,6 @@
   padding: 5px;
   display: flex;
   flex-direction: column-reverse;
-  /* border: 1px var(--gray) solid; */
 }
 
 .reviews-main, .reviews-form-main {
@@ -32,22 +31,16 @@
   border: 1px var(--gray) solid;
   display: flex;
   justify-content: space-between;
-  /* text-align: left; */
   line-height: 250%;
   padding: 0 10px;
   background-color: var(--black);
   color: var(--white);
 }
 
-/* .reviewer-name  {
-  border: 1px purple solid;
-} */
-
 .review-box {
   display: block;
   width: 100%;
   height: 10vh;
-  /* max-height: 100%; */
 }
 
 input[type=submit]  {
@@ -65,22 +58,8 @@ input[type=submit]  {
 }
 
 @media screen and (min-width: 768px)  {
-  .reviews-div  {
-    /* flex-direction: row-reverse; */
-    /* justify-content: flex-end; */
-    /* border: 1px yellowgreen solid; */
-  }
-
   .reviews-main {
     width: 100%;
-    /* border: 1px orangered solid; */
-  }
-
-  .reviews-side {
-    /* border: 1px blue solid; */
-    /* width: 15%;
-    min-width: 15%;
-    line-height: 600%; */
   }
 
   .reviews-form-main {

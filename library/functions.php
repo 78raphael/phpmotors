@@ -284,9 +284,9 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height)
 * ********************************* */
 
 /**
- *    Create HTML for reviews
+ *    Create HTML for all reviews
  */
-function buildReviewsDisplay($reviewsArr, $invId)
+function buildReviewsDisplay($reviewsArr, $invId, $prefix)
 {
   $reviewsDisplay = "";
   $clientId = $_SESSION['clientData']['clientId'];
@@ -294,45 +294,84 @@ function buildReviewsDisplay($reviewsArr, $invId)
   if($_SESSION['loggedin'] == false || !isset($_SESSION))  {
     $reviewsDisplay = '<p>To leave a review, please <a href="/phpmotors/accounts/?action=login" class="default-link">log in</a>.</p>';
   } else {
-    $reviewsDisplay .= "<form id='review-form' method='POST' action='/phpmotors/reviews/'>
-          <div class='reviews-form-div'>
-            <div class='reviews-form-main'>
-              <div class='review-area'>
-                <textarea class='review-box' name='reviewText' id='reviewText' placeholder='Add review here'></textarea>
-              </div>
-            </div>
-            <div class='reviews-form-side'>
-              <div class='submit'>
-                <input class='submit-btn btn' type='submit' name='submit' id='updateAccount' value='Add Review'>
-                <input type='hidden' name='action' value='addReview'>
-                <input type='hidden' name='clientId' value='$clientId'>
-                <input type='hidden' name='invId' value='$invId'>
-              </div>
-            </div>
-          </div>
-        </form>";
+    $reviewsDisplay .= buildForm($clientId, $invId, $prefix);
 
     foreach($reviewsArr as $review) {
+      
       $reviewerName = substr($review['clientFirstname'], 0, 1) . ". " . $review['clientLastname'];
-      $reviewStamp = date_format(date_create($review['reviewDate']), "l M. j, Y - g:i:s A");
+      // $reviewStamp = date("M. j, Y - g:i:s A", strtotime($review['reviewDate']));
+      $reviewStamp = $review['reviewDate'];
 
       $reviewsDisplay .= "
         <div class='reviews-div'>
           <div class='reviews-main'>";
-      $reviewsDisplay .= "$review[reviewText]<hr>[$reviewStamp]";
+      $reviewsDisplay .= "$review[reviewText]<hr>$reviewStamp";
 
       $reviewsDisplay .= "</div>
           <div class='reviews-side'>
             <span class='title-review'>$reviewerName</span>
             <div class='title-btns'>
-              <span class='edit-review'><button class='submit-btn'>Edit</button></span>
-              <span class='delete-review'><button>Delete</button></span>
+              <span class='edit-review'><a href='/phpmotors/reviews/?action=editReview&reviewId=$review[reviewId]'><button class='submit-btn'>Edit</button></a></span>
+              <span class='delete-review'><a href='/phpmotors/reviews/?action=confirmDelete&reviewId=$review[reviewId]'><button>Delete</button></a></span>
             </div>
           </div>
         </div>";
     }
   }
-  
-  // return $reviewsArr;
+
   return $reviewsDisplay;
+}
+
+/**
+ *    Build HTML to edit review
+ */
+function buildEditReviewDisplay($reviewsArr, $invId, $prefix)
+{
+  $reviewsDisplay = "";
+  $clientId = $_SESSION['clientData']['clientId'];
+
+  if($_SESSION['loggedin'] == false || !isset($_SESSION))  {
+    $reviewsDisplay = '<p>To leave a review, please <a href="/phpmotors/accounts/?action=login" class="default-link">log in</a>.</p>';
+  } else {
+    $reviewsDisplay .= buildForm($clientId, $invId, $prefix, $reviewsArr[0]['reviewText'], $reviewsArr[0]['reviewId']);
+  }
+
+  return $reviewsDisplay;
+}
+
+/**
+ *    Build HTML for form
+ */
+function buildForm($clientId, $invId, $prefix, $reviewText = '', $reviewId = 0) {
+  switch($prefix) {
+    case 'Add':
+      $actionValue = 'addReview';
+      $hiddenInputs = "<input type='hidden' name='clientId' value='$clientId'>
+      <input type='hidden' name='invId' value='$invId'>";
+      break;
+    case 'Update':
+      $actionValue = 'updateReview';
+      $hiddenInputs = "<input type='hidden' name='reviewId' value='$reviewId'>";
+      break;
+    default:
+      $actionValue = 'addReview';
+      break;
+  }
+
+  return "<form id='review-form' method='POST' action='/phpmotors/reviews/'>
+      <div class='reviews-form-div'>
+        <div class='reviews-form-main'>
+          <div class='review-area'>
+            <textarea class='review-box' name='reviewText' id='reviewText' placeholder='Add review here'>$reviewText</textarea>
+          </div>
+        </div>
+        <div class='reviews-form-side'>
+          <div class='submit'>
+            <input class='submit-btn btn' type='submit' name='submit' id='submitBtn' value='$prefix Review'>
+            <input type='hidden' name='action' value='$actionValue'>
+            $hiddenInputs
+          </div>
+        </div>
+      </div>
+    </form>";
 }
