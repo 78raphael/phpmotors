@@ -38,7 +38,6 @@ switch ($action) {
       $message = '<p class="warning">You must select a vehicle and image file for the vehicle.</p>';
     } else {
       $imgPath = uploadFile('file1');
-      var_dump($imgPath);
       $result = storeImages($imgPath, $invId, $imgName, $imgPrimary);
 
       if ($result) {

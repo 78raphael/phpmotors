@@ -6,16 +6,18 @@
 /**
 *   Get all Reviews for a signed in Client
 */
-function getReviewByClientId($clientId)
+function getReviewsByClientId($clientId)
 {
   $db = phpmotorsConnect();
 
-  $stmt = $db->prepare('SELECT * FROM reviews WHERE clientId = :clientId');
+  $stmt = $db->prepare('SELECT *, i.invMake, i.invModel FROM reviews r
+  JOIN inventory i ON i.invId = r.invId
+  WHERE r.clientId = :clientId');
 
   $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
   $stmt->execute();
 
-  $reviews = $stmt->fetch(PDO::FETCH_ASSOC);
+  $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $stmt->closeCursor();
 
   return $reviews;

@@ -28,12 +28,16 @@ switch ($action)
     $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
     $reviewText = filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING);
 
-    $reviewResult = storeReview($reviewText, $invId, $clientId);
+    if(!$reviewText || $reviewText == "") {
+      $_SESSION['message'] = '<p class="failed">No review entered. Please enter a review.</p>';
+    } else  {
+      $reviewResult = storeReview($reviewText, $invId, $clientId);
 
-    if($reviewResult) {
-      $_SESSION['message'] = '<p class="success">Review was successfully added.<?p>';
-    } else{
-      $_SESSION['message'] = '<p class="failed">Error: review not added. Try again.</p>';
+      if($reviewResult) {
+        $_SESSION['message'] = '<p class="success">Review was successfully added.<?p>';
+      } else{
+        $_SESSION['message'] = '<p class="failed">Error: review not added. Try again.</p>';
+      }
     }
 
     header("Location: /phpmotors/vehicles/?action=showVehicle&Id=$invId");
@@ -61,27 +65,22 @@ switch ($action)
     $reviewId = filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
     $reviewText = filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING);
 
-    $reviewResult = updateReview($reviewText, $reviewId);
+    if(!$reviewText || $reviewText == "") {
+      $_SESSION['message'] = '<p class="failed">No review entered. Please enter a review.</p>';
+    } else  {
+      $reviewResult = updateReview($reviewText, $reviewId);
 
-    $invId = $_SESSION['carData']['invId'];
-    $prefix = "Add";
-    $title = "Review";
-
-    $vehicleInfo = getVehicleDetailsById($invId);
-    $vehicleThumbs = getThumbnailsById($invId);
-    $showThumbs = showThumbnails($vehicleThumbs);
-    $vehicleDetails = showVehicleDetails($vehicleInfo);
-
-    $getReviews = getReviewByInvId($invId);
-    $reviewEntries = buildReviewsDisplay($getReviews, $invId, $prefix);
-
-    if($reviewResult) {
-      $_SESSION['message'] = '<p class="success">Review was successfully updated.<?p>';
-    } else{
-      $_SESSION['message'] = '<p class="failed">Error: review not updated. Try again.</p>';
+      if($reviewResult) {
+        $_SESSION['message'] = '<p class="success">Review was successfully updated.<?p>';
+      } else {
+        $_SESSION['message'] = '<p class="failed">Error: review not updated. Try again.</p>';
+      }
     }
 
-    include '../view/vehicle-detail.php';
+    $reviewsData = getReviewsByClientId($_SESSION['clientData']['clientId']);
+    $clientReviews = buildClientReviewsDisplay($reviewsData);
+
+    include '../view/admin.php';
     break;
   case 'confirmDelete':
     $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
@@ -95,17 +94,8 @@ switch ($action)
 
     $deleteResult = deleteReview($reviewId);
 
-    $invId = $_SESSION['carData']['invId'];
-    $prefix = "Add";
-    $title = "Review";
-
-    $vehicleInfo = getVehicleDetailsById($invId);
-    $vehicleThumbs = getThumbnailsById($invId);
-    $showThumbs = showThumbnails($vehicleThumbs);
-    $vehicleDetails = showVehicleDetails($vehicleInfo);
-
-    $getReviews = getReviewByInvId($invId);
-    $reviewEntries = buildReviewsDisplay($getReviews, $invId, $prefix);
+    $reviewsData = getReviewsByClientId($_SESSION['clientData']['clientId']);
+    $clientReviews = buildClientReviewsDisplay($reviewsData);
 
     if($deleteResult) {
       $_SESSION['message'] = '<p class="success">Review was successfully deleted.<?p>';
@@ -113,7 +103,7 @@ switch ($action)
       $_SESSION['message'] = '<p class="failed">Error: review not deleted. Try again.</p>';
     }
 
-    include '../view/vehicle-detail.php';
+    include '../view/admin.php';
     break;
   default:
     include '';

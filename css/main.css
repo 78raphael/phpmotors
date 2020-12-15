@@ -139,7 +139,7 @@ footer  {
 
 @media only screen and (min-width: 768px)  {
   body  {
-    /* background: url("../images/site/checkerboard.jpg"); */
+    background: url("../images/site/checkerboard.jpg");
     background-repeat: repeat;
     background-size: 30%;
     background-attachment: fixed;
@@ -149,7 +149,6 @@ footer  {
 
   main  {
     padding: 0 5px;
-    /* border: 1px solid red; */
   }
 
   #container  {

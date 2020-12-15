@@ -8,6 +8,8 @@
     exit;
   }
 
+  // var_dump($reviewsData);
+
   $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
   $clientData = $_SESSION['clientData'];
 
@@ -33,6 +35,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/phpmotors/css/main.css" media="screen">
+  <link rel="stylesheet" href="/phpmotors/css/reviews.css" media="screen">
   <title>PHP Motors</title>
 </head>
 <body>
@@ -59,6 +62,8 @@
         <?=$accountLink;?>
       </section>
       <?=$inventoryLink;?>
+      <h2>Reviews</h2>
+      <?=$clientReviews?>
     </main>
     <footer>
       <?php require $root_snip . 'footer.php'; ?>

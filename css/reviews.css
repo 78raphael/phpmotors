@@ -57,6 +57,57 @@ input[type=submit]  {
   margin-left: 10px;
 }
 
+.adminReviews {
+  /* border: 1px red solid; */
+}
+
+.admin-review {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border: 1px var(--black) solid;
+  background-color: var(--light-blue);
+}
+
+.admin-review p {
+  margin: 7px 0;
+}
+
+.admin-review hr  {
+  border-top: 1px solid var(--black);
+}
+
+.admin-buttons  {
+  text-align: center;
+}
+
+.admin-buttons span {
+  margin: 0 10px;
+}
+
+.review-btn {
+  width: 40%;
+  height: 50px;
+}
+
+.review-btn button  {
+  border-radius: 5px;
+}
+
+.admin-review-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--black);
+  color: var(--white);
+  line-height: 250%;
+  padding: 0 15px;
+}
+
+.review-title {
+  font-weight: 900;
+  font-size: large;
+}
+
 @media screen and (min-width: 768px)  {
   .reviews-main {
     width: 100%;
@@ -64,5 +115,9 @@ input[type=submit]  {
 
   .reviews-form-main {
     width: 100%;
+  }
+
+  .review-btn {
+    height: 40px;
   }
 }

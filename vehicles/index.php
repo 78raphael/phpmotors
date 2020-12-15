@@ -178,6 +178,7 @@ switch ($action)
 
     $getReviews = getReviewByInvId($invId);
     $reviewEntries = buildReviewsDisplay($getReviews, $invId, $prefix);
+    // var_dump('get Reviews', $getReviews);
 
     include '../view/vehicle-detail.php';
     break;

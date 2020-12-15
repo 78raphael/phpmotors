@@ -9,6 +9,7 @@ require_once '../library/connections.php';
 require_once '../model/main-model.php';
 require_once '../model/accounts-model.php';
 require_once '../model/vehicles-model.php';
+require_once '../model/reviews-model.php';
 require_once '../library/functions.php';
 
 $classifications = getClassifications();
@@ -29,6 +30,9 @@ switch($action)
     include '../view/registration.php';
     break;
   case 'admin':
+    $reviewsData = getReviewsByClientId($_SESSION['clientData']['clientId']);
+    $clientReviews = buildClientReviewsDisplay($reviewsData);
+
     include '../view/admin.php';
     break;
   case 'client-update':
@@ -42,7 +46,6 @@ switch($action)
     $clientLastname = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING);
     $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
     $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
-
 
     $clientEmail = checkEmail($clientEmail);
     $existingEmail = checkExistingEmail($clientEmail);
@@ -72,7 +75,7 @@ switch($action)
 
     if($regOutcome === 1)  
     {
-      setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+      setcookie('firstName', $clientFirstname, strtotime('+1 year'), '/');
       $_SESSION['message'] = "<p class='success'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
 
       header('Location: /phpmotors/accounts/?action=login');
@@ -100,8 +103,6 @@ switch($action)
 
     $clientData = getClient($clientEmail);
     $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
-    var_dump($clientData['clientPassword']);
-    var_dump($hashCheck);
 
     if(!$hashCheck) {
       $_SESSION['message'] = '<p class="warning">Please check your password and try again.</p>';
@@ -109,9 +110,14 @@ switch($action)
       exit;
     }
 
+    setcookie("firstName", "", time()-3600, '/');
     $_SESSION['loggedin'] = TRUE;
     array_pop($clientData);
     $_SESSION['clientData'] = $clientData;
+    setcookie('firstName', $_SESSION['clientData']['clientFirstname']);
+
+    $reviewsData = getReviewsByClientId($_SESSION['clientData']['clientId']);
+    $clientReviews = buildClientReviewsDisplay($reviewsData);
 
     include '../view/admin.php';
     exit;
@@ -119,6 +125,7 @@ switch($action)
     break;
   case 'logout':
     session_destroy();
+    setcookie("firstName", "", time()-3600, '/');
     header('Location: /phpmotors/');
     break;
   case 'updateAccount':

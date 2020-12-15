@@ -3,8 +3,8 @@
  *    Individual Vehicle View
  */
 
-var_dump('GET REVIEWS', $getReviews);
-var_dump('SESSION', $_SESSION);
+// var_dump('GET REVIEWS', $getReviews);
+// var_dump('SESSION', $_SESSION);
 
   $root_snip = $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snip/';
 

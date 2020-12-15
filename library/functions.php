@@ -289,12 +289,14 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height)
 function buildReviewsDisplay($reviewsArr, $invId, $prefix)
 {
   $reviewsDisplay = "";
-  $clientId = $_SESSION['clientData']['clientId'];
 
-  if($_SESSION['loggedin'] == false || !isset($_SESSION))  {
-    $reviewsDisplay = '<p>To leave a review, please <a href="/phpmotors/accounts/?action=login" class="default-link">log in</a>.</p>';
+  if(!isset($_SESSION) || $_SESSION['loggedin'] == false)  {
+    $reviewsDisplay .= '<p>To leave a review, please <a href="/phpmotors/accounts/?action=login" class="default-link">log in</a>.</p>';
+
   } else {
+    $clientId = $_SESSION['clientData']['clientId'];
     $reviewsDisplay .= buildForm($clientId, $invId, $prefix);
+  }
 
     foreach($reviewsArr as $review) {
       
@@ -310,14 +312,10 @@ function buildReviewsDisplay($reviewsArr, $invId, $prefix)
       $reviewsDisplay .= "</div>
           <div class='reviews-side'>
             <span class='title-review'>$reviewerName</span>
-            <div class='title-btns'>
-              <span class='edit-review'><a href='/phpmotors/reviews/?action=editReview&reviewId=$review[reviewId]'><button class='submit-btn'>Edit</button></a></span>
-              <span class='delete-review'><a href='/phpmotors/reviews/?action=confirmDelete&reviewId=$review[reviewId]'><button>Delete</button></a></span>
-            </div>
           </div>
         </div>";
     }
-  }
+
 
   return $reviewsDisplay;
 }
@@ -335,6 +333,37 @@ function buildEditReviewDisplay($reviewsArr, $invId, $prefix)
   } else {
     $reviewsDisplay .= buildForm($clientId, $invId, $prefix, $reviewsArr[0]['reviewText'], $reviewsArr[0]['reviewId']);
   }
+
+  return $reviewsDisplay;
+}
+
+/**
+ *    Build HTML for admin view client reviews
+ */
+function buildClientReviewsDisplay($reviewsData)
+{
+  $reviewsCount = count($reviewsData);
+
+  $reviewsDisplay = "<div class='adminReviews'>";
+  if( $reviewsCount == 0 || $reviewsCount == NULL )  {
+    $reviewsDisplay .= "There are no reviews.";
+    $reviewsDisplay .= "</div>";
+    
+    return $reviewsDisplay;
+    exit;
+  }
+
+  foreach($reviewsData as $review)  {
+    $reviewsDisplay .= "<div class='admin-review-title'><span class='review-title'>$review[invMake] $review[invModel]</span><span class='review-date'>$review[reviewDate]</span></div>";
+    $reviewsDisplay .= "<div class='admin-review'>";
+    // $reviewsDisplay .= "<p>$review[reviewDate]</p>";
+    $reviewsDisplay .= "<p>$review[reviewText]</p><hr>";
+    $reviewsDisplay .= "<p class='admin-buttons'><span><a href='/phpmotors/reviews/?action=editReview&reviewId=$review[reviewId]' alt='Admin review edit button'><button class='review-btn'>Edit</button></a></span>";
+    $reviewsDisplay .= " <span><a href='/phpmotors/reviews/?action=confirmDelete&reviewId=$review[reviewId]' alt='Admin review delete button'><button class='review-btn'>Delete</button></a></span></p>";
+    $reviewsDisplay .= "</div>";
+  }
+
+  $reviewsDisplay .= "</div>";
 
   return $reviewsDisplay;
 }
@@ -362,7 +391,7 @@ function buildForm($clientId, $invId, $prefix, $reviewText = '', $reviewId = 0) 
       <div class='reviews-form-div'>
         <div class='reviews-form-main'>
           <div class='review-area'>
-            <textarea class='review-box' name='reviewText' id='reviewText' placeholder='Add review here'>$reviewText</textarea>
+            <textarea class='review-box' name='reviewText' id='reviewText' placeholder='Add review here' required>$reviewText</textarea>
           </div>
         </div>
         <div class='reviews-form-side'>
