@@ -34,13 +34,13 @@
       </div>
       <div class='confirmation-div'>
         <div class='confirm-submit'>
-          <a href="/phpmotors/accounts/?action=admin" alt="Cancel delete button">  
-            <button class='confirm-submit-btn' name='cancel-btn' id='cancelBtn'>Cancel</button>
+          <a href="/phpmotors/accounts/?action=admin" title="Cancel delete button">  
+            <div class='confirm-submit-btn' name='cancel-btn' id='cancelBtn'>Cancel</div>
           </a>
         </div>
         <div class='confirm-submit'>
-          <a href="/phpmotors/reviews/?action=deleteReview&reviewId=<?=$reviewId?>" alt="Confirm delete button">
-            <button class='confirm-submit-btn' name='confirm-btn' id='confirmBtn'>Confirm</button>
+          <a href="/phpmotors/reviews/?action=deleteReview&reviewId=<?=$reviewId?>" title="Confirm delete button">
+            <div class='confirm-submit-btn' name='confirm-btn' id='confirmBtn'>Confirm</div>
           </a>
         </div>
       </div>

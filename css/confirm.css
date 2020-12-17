@@ -27,7 +27,12 @@
   margin: 10px;
 }
 
-button  {
+.confirm-submit a {
+  text-decoration: none;
+}
+
+.confirm-submit-btn  {
+  text-align: center;
   /* display: inline-block; */
   border: none;
   text-decoration: none;
@@ -35,11 +40,10 @@ button  {
   color: var(--white);
   font-size: 1rem;
   cursor: pointer;
-  /* text-align: center; */
 
   /* border-radius: 5px; */
   border-width: 0;
-  width: 96.5%;
+  /* width: 96.5%; */
   padding: 5px;
   margin: 10px;
 

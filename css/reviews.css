@@ -77,20 +77,46 @@ input[type=submit]  {
 }
 
 .admin-buttons  {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   text-align: center;
 }
 
-.admin-buttons span {
-  margin: 0 10px;
+.admin-buttons a {
+  margin: 10px;
+  text-decoration: none;
+  width: 96.5%;
 }
 
 .review-btn {
-  width: 40%;
+  /* width: 40%; */
   height: 50px;
+  /* border: 1px red solid; */
+  line-height: 250%;
+
+  text-align: center;
+  /* border: none; */
+  text-decoration: none;
+  background-color: var(--blue);
+  color: var(--white);
+  /* font-size: 1rem; */
+  cursor: pointer;
+
+  border-radius: 5px;
+  /* border-width: 0; */
+  width: 96.5%;
+  padding: 5px;
+  /* margin: 10px; */
+
+  /* transition: background 250ms ease-in-out, 
+              transform 150ms ease; */
+  /* -webkit-appearance: none; */
+  /* -moz-appearance: none; */
 }
 
 .review-btn button  {
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .admin-review-title {

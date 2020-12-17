@@ -114,7 +114,6 @@ switch($action)
     $_SESSION['loggedin'] = TRUE;
     array_pop($clientData);
     $_SESSION['clientData'] = $clientData;
-    setcookie('firstName', $_SESSION['clientData']['clientFirstname']);
 
     $reviewsData = getReviewsByClientId($_SESSION['clientData']['clientId']);
     $clientReviews = buildClientReviewsDisplay($reviewsData);

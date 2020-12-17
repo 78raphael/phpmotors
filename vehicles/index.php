@@ -178,7 +178,6 @@ switch ($action)
 
     $getReviews = getReviewByInvId($invId);
     $reviewEntries = buildReviewsDisplay($getReviews, $invId, $prefix);
-    // var_dump('get Reviews', $getReviews);
 
     include '../view/vehicle-detail.php';
     break;
@@ -199,5 +198,3 @@ switch ($action)
     include '../view/vehicle_management.php';
     break;
 }
-
-// echo $classList;

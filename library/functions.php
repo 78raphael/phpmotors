@@ -69,8 +69,8 @@ function buildVehiclesDisplay($vehicles)
   $dv = '<ul id="inv-display">';
 
   foreach ($vehicles as $vehicle) {
-    $dv .= "<li><a href='/phpmotors/vehicles/?action=showVehicle&Id=$vehicle[invId]' alt='Display vehicle'>";
-    $dv .= "<img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+    $dv .= "<li><a href='/phpmotors/vehicles/?action=showVehicle&Id=$vehicle[invId]' title='Display vehicle'>";
+    $dv .= "<img src='$vehicle[imgPath]' title='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
     $dv .= '<hr>';
     $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
     $dv .= "<span>$ $vehicle[invPrice]</span>";
@@ -355,11 +355,19 @@ function buildClientReviewsDisplay($reviewsData)
 
   foreach($reviewsData as $review)  {
     $reviewsDisplay .= "<div class='admin-review-title'><span class='review-title'>$review[invMake] $review[invModel]</span><span class='review-date'>$review[reviewDate]</span></div>";
+
+
     $reviewsDisplay .= "<div class='admin-review'>";
-    // $reviewsDisplay .= "<p>$review[reviewDate]</p>";
     $reviewsDisplay .= "<p>$review[reviewText]</p><hr>";
-    $reviewsDisplay .= "<p class='admin-buttons'><span><a href='/phpmotors/reviews/?action=editReview&reviewId=$review[reviewId]' alt='Admin review edit button'><button class='review-btn'>Edit</button></a></span>";
-    $reviewsDisplay .= " <span><a href='/phpmotors/reviews/?action=confirmDelete&reviewId=$review[reviewId]' alt='Admin review delete button'><button class='review-btn'>Delete</button></a></span></p>";
+
+    $reviewsDisplay .= "<div class='admin-buttons'>
+    <a href='/phpmotors/reviews/?action=editReview&reviewId=$review[reviewId]' title='Admin review edit button'>
+    <div class='review-btn'>Edit</div>
+    </a>";
+    $reviewsDisplay .= " <a href='/phpmotors/reviews/?action=confirmDelete&reviewId=$review[reviewId]' title='Admin review delete button'>
+    <div class='review-btn'>Delete</div>
+    </a></div>";
+
     $reviewsDisplay .= "</div>";
   }
 
